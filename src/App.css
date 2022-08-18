@@ -1,0 +1,26 @@
+.App {
+  text-align: center;
+}
+
+.main{
+  margin-top: 5em;
+ 
+}
+.center {
+  justify-content: center;
+  padding: 10px;
+}
+.card{
+  text-align: center;
+}
+.item {
+  margin-top: 5em;
+  padding: 15px 0px !important;
+}
+
+i.icon {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
