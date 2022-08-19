@@ -29,6 +29,9 @@ function ContactList(props){
             <div>{contact.email}</div>
             
             </Link>
+            <Link to={{ pathname:`/edit/${contact.id}`, state:{contact:contact} }}>
+                <i className="edit blue alternate icon"></i>
+            </Link>
             
              {/* <div onClick={()=>props.getId(contact.id)}> <i className="trash alternate icon"/></div>  */}
             <div onClick={()=>{props.getId(contact.id);toast.error("Contact has been deleted",{autoClose:2000,position:toast.POSITION.TOP_RIGHT})}}> <i className="trash alternate icon"/></div>
