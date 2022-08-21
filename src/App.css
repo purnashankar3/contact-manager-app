@@ -23,4 +23,8 @@ i.icon {
   font-size: 20px;
   cursor: pointer;
 }
+.prompt{
+  display:flex;
+  width: 100%;
+}
 

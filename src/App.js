@@ -15,6 +15,8 @@ function App() {
 
   const KEY_FOR_CONTACTS = "con"
   const [contacts,setContacts] = useState([])
+  const [searchTerm,setSearchTerm] = useState("")
+  const [filteredContacts, setFilteredContacts]= useState([])
 
   useEffect(()=>{
     // const retreiveContacts =JSON.parse(localStorage.getItem(KEY_FOR_CONTACTS))
@@ -52,6 +54,15 @@ function App() {
      const filteredContacts= contacts.filter(contact=>{return (contact.id!==id)})
      setContacts(filteredContacts)
     }
+    const searchHandler=(term)=>{
+      setSearchTerm(term)
+     
+      if(searchTerm !== ""){
+        const newContacts = contacts.filter(contact=>{return Object.values(contact).join(" ").toLowerCase().includes(searchTerm.toLowerCase())})
+       setFilteredContacts(newContacts)
+      }
+      else{setFilteredContacts(contacts)}
+    }
 
     console.log(typeof(contacts))
   return (
@@ -62,7 +73,8 @@ function App() {
 
       
       <Route path="/add"  render={(props)=> (<AddContact {...props } contactHandler={contactHandler} />)}/>
-      <Route path="/" exact render={(props)=>(<ContactList {...props} contacts={contacts} getId={removeHandler}/>)} />
+      <Route path="/" exact render={(props)=>(<ContactList {...props} contacts={searchTerm <1 ? contacts: filteredContacts} 
+      getId={removeHandler} searchTerm={searchTerm} searchHandler={searchHandler} />)} />
       <Route path="/contact/:name" component={ContactDetail}/>
       <Route path="/edit/:id" render={(props)=>(<EditContact {...props} updateHandler={updateHandler}/>)}/>
       </Switch>
